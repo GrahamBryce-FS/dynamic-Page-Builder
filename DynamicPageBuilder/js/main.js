@@ -106,9 +106,10 @@ class Main {
 
 
 
-    let imgTray = document.createElement("img");
-    imgTray.id = 'imgTray';
-    trayDiv.appendChild(imgTray);
+    // let imgTray = document.createElement("img");
+    // imgTray.id = 'imgTray';
+    // trayDiv.appendChild(imgTray);
+    trayDiv.appendChild(this.image);
 
 
     let title = document.createElement("p");
@@ -155,9 +156,21 @@ class Main {
     // document.body.insertBefore(newDiv, currentDiv);
     console.log('Fill in vars')
 
-    this
+    var title = document.getElementById('title')
+    // title.innerHTML = 'boogers';
+    var rating = document.getElementById('rating')
+    var duration = document.getElementById('duration')
+    title.innerHTML = this.movieTitle;
+    rating.innerHTML = this.movieRating;
+    duration.innerHTML = this.movieDuration;
+
+    // console.log(this.movieNumber);
+    this.image.src = 'images/'+ this.moviesArray[this.movieNumber ].image
 
 
+// this.movieTitle;
+// this.movieRating;
+// this.movieDuration;
 
 
   }
@@ -193,6 +206,7 @@ class Main {
     // update current movie index//
     // update dom with correct info 
 
+    this.fillInvars()
     // Use utility class to convert times to 00:00 (hours:minutes) format
     this.movieNumber++;
     
@@ -203,7 +217,7 @@ class Main {
 
     ////
 
-    this.fillInvars()
+    
 
   }
 }
