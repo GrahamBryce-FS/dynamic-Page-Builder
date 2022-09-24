@@ -162,7 +162,7 @@ class Main {
     var duration = document.getElementById('duration')
     title.innerHTML = this.movieTitle;
     rating.innerHTML = this.movieRating;
-    duration.innerHTML = this.movieDuration;
+    duration.innerHTML = Utils.convertTime(this.movieDuration);
 
     // console.log(this.movieNumber);
     this.image.src = 'images/'+ this.moviesArray[this.movieNumber ].image
