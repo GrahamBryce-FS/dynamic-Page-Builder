@@ -84,10 +84,61 @@ class Main {
   buildDom() {
     console.log("building DOM");
 
-    this.createMovieBlock( this.moviesArray[0])
+    // adding a buttton
+    const app = this; 
+    let btn = document.createElement("button");
+    btn.innerHTML = "Next";
+    btn.onclick = function () {
+      // alert("Button is clicked");
+      // showMovie()
+      // main.showMovie()
+      // console.log(app)
+      app.showMovie()
 
-    for (let i = 0; i < this.moviesArray.length; i++) {
-    }
+    };
+    document.body.appendChild(btn);
+
+
+    let trayDiv = document.createElement("div");
+    trayDiv.id = 'movietray';
+
+    document.body.appendChild(trayDiv);
+
+
+
+    let imgTray = document.createElement("img");
+    imgTray.id = 'imgTray';
+    trayDiv.appendChild(imgTray);
+
+
+    let title = document.createElement("p");
+    title.id = 'title';
+    trayDiv.appendChild(title);
+
+    let rating = document.createElement("p");
+    rating.id = 'rating';
+    trayDiv.appendChild(rating);
+
+    let duration = document.createElement("p");
+    duration.id = 'duration';
+    trayDiv.appendChild(duration);
+   
+
+
+    //// Add a movie tray  
+
+
+
+
+    // let btn = document.createElement("button");
+    // btn.innerHTML = "Click Me";
+    // document.body.appendChild(btn);
+
+
+    // this.createMovieBlock(this.moviesArray[0])
+
+    // for (let i = 0; i < this.moviesArray.length; i++) {
+    // }
 
     // const newDiv = document.createElement("div");
     // const newContent = document.createTextNode("Hi there and greetings!");
@@ -96,19 +147,64 @@ class Main {
     // document.body.insertBefore(newDiv, currentDiv);
   }
 
-  createMovieBlock(movie){
-    var newDiv = document.createElement("div");
-    var newContent = document.createTextNode(movie.title);
-    newDiv.appendChild(newContent);
-    var currentDiv = document.getElementById("div1");
-    document.body.insertBefore(newDiv, currentDiv);
+  fillInvars(){
+    // var newDiv = document.createElement("div");
+    // var newContent = document.createTextNode(movie.title);
+    // newDiv.appendChild(newContent);
+    // var currentDiv = document.getElementById("div1");
+    // document.body.insertBefore(newDiv, currentDiv);
+    console.log('Fill in vars')
+
+    this
+
+
+
+
   }
 
   // This function updates the output to show the correct movie information and image
   // It should be called when next button is clicked and also initially so a movie is seen before button is clicked the first time
   showMovie() {
-    console.log("show movie");
+    // console.log('Show Movies')
+    // console.log(this.movieNumber)
+    // console.log(this.moviesArray.length)
+
+    if(this.movieNumber > this.moviesArray.length - 1 ){
+      this.movieNumber = 0; 
+    }
+
+    // console.log()
+
+    var movie = this.moviesArray[this.movieNumber]
+    // console.log(movie)
+    this.movieTitle = movie.title
+    this.movieDuration = movie.duration
+    this.movieRating = movie.rating
+
+    // this.image.src = movie.imageFile
+
+    // console.log(this.movieTitle)
+    // console.log(this.movieDuration)
+    // console.log(this.movieRating)
+
+
+    // console.log("show movie");
+
+    // update current movie index//
+    // update dom with correct info 
+
     // Use utility class to convert times to 00:00 (hours:minutes) format
+    this.movieNumber++;
+    
+    // if(this.movieNumber > this.moviesArray.length){
+    //   this.movieNumber = 0; 
+    // }
+
+
+    ////
+
+    this.fillInvars()
+
   }
 }
 
