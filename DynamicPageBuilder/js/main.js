@@ -74,22 +74,15 @@ class Main {
   // Function to build the DOM and sets up event Listeners for the Image and next button
   buildDom() {
     console.log("building DOM");
-    // adding a buttton
-    const app = this; 
-    let btn = document.createElement("button");
-    btn.innerHTML = "Next";
-    // adding click event 
-    btn.onclick = function () {
-      app.showMovie()
-    };
-    document.body.appendChild(btn);
+   
 
     // adding div to display content. 
     let trayDiv = document.createElement("div");
     trayDiv.id = 'movietray';
+    trayDiv.classList.add('container-fluid','lead','m-3')
     document.body.appendChild(trayDiv);
 
-
+    this.image.classList.add('img-fluid','img-thumbnail','mb-3')
     trayDiv.appendChild(this.image);
 
     let title = document.createElement("p");
@@ -103,6 +96,22 @@ class Main {
     let duration = document.createElement("p");
     duration.id = 'duration';
     trayDiv.appendChild(duration);
+
+
+
+     // adding a buttton
+     const app = this; 
+     let btn = document.createElement("button");
+     btn.innerHTML = "Next";
+     btn.classList.add('btn','btn-lg', 'btn-primary')
+     // adding click event 
+     btn.onclick = function () {
+       app.showMovie()
+     };
+     trayDiv.appendChild(btn);
+
+
+     document.body.classList.add('container')
    
   }
 
