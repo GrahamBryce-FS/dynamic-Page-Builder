@@ -66,49 +66,84 @@ class Main {
   createObjects() {
     console.log("creating objects");
     for (let i = 0; i < movies.length; i++) {
-      // text += cars[i] + "<br>";
-      // console.log(movies[i].title,movies[i].rating,movies[i].duration,movies[i].imageFile)
-      // let aliens = new Movie(movies[0].title,movies[0].rating,movies[0].duration,movies[0].imageFile)
-      // let matrix = new Movie(movies[1].title,movies[1].rating,movies[1].duration,movies[1].imageFile)
-      // let endgame = new Movie(movies[2].title,movies[2].rating,movies[2].duration,movies[2].imageFile)
       var x = new Movie(movies[i].title,movies[i].rating,movies[i].duration,movies[i].imageFile)
-      // console.log(x);
       this.moviesArray.push(x);
-      
     }
-
-    // console.log(this.moviesArray)
   }
 
   // Function to build the DOM and sets up event Listeners for the Image and next button
   buildDom() {
     console.log("building DOM");
+   
 
-    this.createMovieBlock( this.moviesArray[0])
+    // adding div to display content. 
+    let trayDiv = document.createElement("div");
+    trayDiv.id = 'movietray';
+    trayDiv.classList.add('container-fluid','lead','m-3')
+    document.body.appendChild(trayDiv);
 
-    for (let i = 0; i < this.moviesArray.length; i++) {
-    }
+    this.image.classList.add('img-fluid','img-thumbnail','mb-3')
+    trayDiv.appendChild(this.image);
 
-    // const newDiv = document.createElement("div");
-    // const newContent = document.createTextNode("Hi there and greetings!");
-    // newDiv.appendChild(newContent);
-    // const currentDiv = document.getElementById("div1");
-    // document.body.insertBefore(newDiv, currentDiv);
-  }
+    let title = document.createElement("p");
+    title.id = 'title';
+    trayDiv.appendChild(title);
 
-  createMovieBlock(movie){
-    var newDiv = document.createElement("div");
-    var newContent = document.createTextNode(movie.title);
-    newDiv.appendChild(newContent);
-    var currentDiv = document.getElementById("div1");
-    document.body.insertBefore(newDiv, currentDiv);
+    let rating = document.createElement("p");
+    rating.id = 'rating';
+    trayDiv.appendChild(rating);
+
+    let duration = document.createElement("p");
+    duration.id = 'duration';
+    trayDiv.appendChild(duration);
+
+
+
+     // adding a buttton
+     const app = this; 
+     let btn = document.createElement("button");
+     btn.innerHTML = "Next";
+     btn.classList.add('btn','btn-lg', 'btn-primary')
+     // adding click event 
+     btn.onclick = function () {
+       app.showMovie()
+     };
+     trayDiv.appendChild(btn);
+
+
+     document.body.classList.add('container')
+   
   }
 
   // This function updates the output to show the correct movie information and image
   // It should be called when next button is clicked and also initially so a movie is seen before button is clicked the first time
   showMovie() {
-    console.log("show movie");
-    // Use utility class to convert times to 00:00 (hours:minutes) format
+    console.log('Show Movies')
+
+    // CHECK THAT MOVIE NUMBER IS IN RANGe 
+    if(this.movieNumber > this.moviesArray.length - 1 ){
+      this.movieNumber = 0; 
+    }
+
+
+    var movie = this.moviesArray[this.movieNumber]
+
+    this.movieTitle = movie.title
+    this.movieDuration = movie.duration
+    this.movieRating = movie.rating
+
+    var title = document.getElementById('title')
+    var rating = document.getElementById('rating')
+    var duration = document.getElementById('duration')
+    title.innerHTML = this.movieTitle;
+    rating.innerHTML = this.movieRating;
+    duration.innerHTML = Utils.convertTime(this.movieDuration);
+    this.image.src = 'images/'+ this.moviesArray[this.movieNumber ].image
+
+    // increment movie number
+    this.movieNumber++;
+        
+
   }
 }
 
